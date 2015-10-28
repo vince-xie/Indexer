@@ -11,8 +11,10 @@
 
 #include <stdio.h>
 
-void searchFile(char *filename);
+void searchFile(char *directory, char *relativePath, FILE *output);
 
-void searchDirectory(char *directory);
+void searchDirectory(char *directory, char *relativePath, FILE *output);
+
+void writeToOutputFile(FILE *output);
 
 #endif /* indexer_h */

@@ -63,7 +63,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "/Users/vincexie/Documents/Github/Indexer/Indexer/Indexer/Test.txt"
+            argument = "/Users/vincexie/Documents/Github/Indexer/Indexer/Indexer/Debug/Test.txt"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

@@ -14,12 +14,16 @@
 #include <dirent.h>
 #include <string.h>
 
-void searchFile(char *filename){
+void searchFile(char *filename, char *relativePath, FILE *output){
     FILE *file = fopen(filename, "r");
     if (!file) {
         printf("Cannot open input file \"%s\"\n", filename);
         return;
     }
+    fputs("\n", output); //next 4 lines will be changed. For testing purposes
+    fputs("FILE: ", output);
+    fputs(relativePath, output);
+    fputs("\n", output);
     fseek(file, 0, SEEK_END);
     long filesize = ftell(file);
     rewind(file);
@@ -33,14 +37,16 @@ void searchFile(char *filename){
         if(token == NULL){
             break;
         }
-        printf("%s\n", token);
+        fputs(token, output); //next 2 lines will be changed. For testing purposes
+        fputc('\n', output);
     }
     TKDestroy(tk);
 }
 
-void searchDirectory(char *directory){
+void searchDirectory(char *directory, char *relativePath, FILE *output){
     DIR *dir = opendir(directory);
     char temp[256];
+    char path[256];
     if(!dir){
         printf("Could not open directory \"%s\"\n", directory);
     }
@@ -50,17 +56,28 @@ void searchDirectory(char *directory){
             strcpy(temp, directory);
             strcat(temp, "/");
             strcat(temp, ent->d_name);
+            strcpy(path, relativePath);
+            strcat(path, "/");
+            strcat(path, ent->d_name);
             if(isDir(temp)){
-                searchDirectory(temp);
+                searchDirectory(temp, path, output);
             } else {
-                searchFile(temp);
+                searchFile(temp, path, output);
             }
         }
     }
     closedir(dir);
 }
 
+void writeToOutputFile(FILE *output){
+    
+}
+
 int main(int argc, char **argv) {
+    if(argc != 3){
+        printf("Wrong number of inputs\n");
+        return 1;
+    }
     if(argv[1] == NULL){
         printf("Usage: ./indexer [output file] [input file or directory]");
     }
@@ -68,29 +85,41 @@ int main(int argc, char **argv) {
         printf("Please enter a file or directory as an argument.\n");
         return 1;
     }
-    DIR *dir = opendir(argv[2]);
-    if(!dir){
-        printf("Could not open directory or file\"%s\"\n", argv[2]);
-        return 1;
-    }
-    struct dirent *ent;
-    while((ent = readdir(dir)) != NULL) {
-        if(strcmp(ent->d_name, argv[1]) == 0){
-            printf("File already exists. Would you like to overwrite? 1 (yes) or 0 (no) \n");
-            int *input = malloc(sizeof(int));
-            scanf ("%d", input);
-            if(*input == 0){
-                printf("Quitting... \n");
-                return 0;
-            }
-            free(input);
+    char pathToOutput[256];
+    char pathToFoD[256];
+    
+    getFullPath(argv[0], argv[1], pathToOutput);
+    getFullPath(argv[0], argv[2], pathToFoD);
+    
+    FILE *test = fopen(pathToOutput, "r");
+    if(test){
+        printf("Output file already exists. Would you like to overwrite? (y/n) \n");
+        char input = 'n';
+        scanf ("%c", &input);
+        if(input == 'n'){
+            printf("Quitting...\n");
+            return 0;
+        } else if(input != 'y'){
+            printf("Invalid input. Quitting...\n");
+            return 1;
         }
     }
-    if(isDir(argv[2])){
-        searchDirectory(argv[2]);
+    fclose(test);
+    
+    if(!isDir(pathToFoD) && !isFile(pathToFoD)){
+        printf("Could not open directory or file \"%s\"\n", argv[2]);
+        return 1;
     }
-    if(isFile(argv[2])){
-        searchFile(argv[2]);
+    FILE *output = fopen(pathToOutput, "w");
+    if(isDir(pathToFoD)){
+        searchDirectory(pathToFoD, argv[2], output);
     }
+    if(isFile(pathToFoD)){
+        searchFile(pathToFoD, argv[1], output);
+    }
+    
+    writeToOutputFile(output);
+    fclose(output);
+    printf("Done.\n");
     return 0;
 }

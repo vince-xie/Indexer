@@ -15,4 +15,6 @@ int isDir(const char *path);
 
 int isFile(const char *path);
 
+void getFullPath(char *path, char *relative, char *dest);
+
 #endif /* utils_h */

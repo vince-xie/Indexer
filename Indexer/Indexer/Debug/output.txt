@@ -1,0 +1,23 @@
+
+FILE: Testdir/nextdir/dir2/Test copy.txt
+What
+a
+wonderful
+day
+
+FILE: Testdir/nextdir/dir2/Test.txt
+test
+wqrqwr22
+ff
+
+FILE: Testdir/nextdir/Test.txt
+test
+wqrqwr22
+ff
+
+FILE: Testdir/Test.txt
+This
+was
+the
+original
+file
