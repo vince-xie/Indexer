@@ -10,18 +10,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
-
-
-/*
- * Tokenizer type.  You need to fill in the type as part of your implementation.
- */
-
-struct TokenizerT_ {
-    char *current;
-    char *token;
-};
-
-typedef struct TokenizerT_ TokenizerT;
+#include "tokenizer.h"
 
 /*
  * TKCreate creates a new TokenizerT object for a given token stream
@@ -93,40 +82,4 @@ char *TKGetNextToken( TokenizerT * tk ) {
         }
     }
     return NULL;
-}
-
-/*
- * main will have a string argument (in argv[1]).
- * The string argument contains the tokens.
- * Print out the tokens in the second string in left-to-right order.
- * Each token should be printed on a separate line.
- */
-
-int main(int argc, char **argv) {
-    if(argv[1] == NULL){
-        printf("Please enter a file as an argument.\n");
-        return 1;
-    }
-    FILE *file = fopen(argv[1], "r");
-    if (!file) {
-        printf("Cannot open input file \"%s\"\n", argv[1]);
-        exit(0);
-    }
-    fseek(file, 0, SEEK_END);
-    long filesize = ftell(file);
-    rewind(file);
-    char *string = malloc((filesize + 1) * sizeof(char));
-    fread(string, sizeof(char), filesize, file);
-    string[filesize] = '\0';
-    fclose(file);
-    TokenizerT *tk = TKCreate(string);
-    while(tk->current[0] != '\0'){
-        char *token = TKGetNextToken(tk);
-        if(token == NULL){
-            break;
-        }
-        printf("%s\n", token);
-    }
-    TKDestroy(tk);
-    return 0;
 }

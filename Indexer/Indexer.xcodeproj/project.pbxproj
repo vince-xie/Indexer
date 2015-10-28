@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6D017D181BE1500F001D37CA /* indexer.c in Sources */ = {isa = PBXBuildFile; fileRef = 6D017D161BE1500F001D37CA /* indexer.c */; settings = {ASSET_TAGS = (); }; };
+		6D017D1B1BE15086001D37CA /* utils.c in Sources */ = {isa = PBXBuildFile; fileRef = 6D017D191BE15086001D37CA /* utils.c */; settings = {ASSET_TAGS = (); }; };
 		6D54169F1BDD47870070CD47 /* tokenizer.c in Sources */ = {isa = PBXBuildFile; fileRef = 6D54169E1BDD47870070CD47 /* tokenizer.c */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
@@ -23,6 +25,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		6D017D151BE14F6B001D37CA /* tokenizer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tokenizer.h; sourceTree = "<group>"; };
+		6D017D161BE1500F001D37CA /* indexer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = indexer.c; sourceTree = "<group>"; };
+		6D017D171BE1500F001D37CA /* indexer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = indexer.h; sourceTree = "<group>"; };
+		6D017D191BE15086001D37CA /* utils.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = utils.c; sourceTree = "<group>"; };
+		6D017D1A1BE15086001D37CA /* utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
 		6D5416931BDD471B0070CD47 /* Indexer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Indexer; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D54169E1BDD47870070CD47 /* tokenizer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tokenizer.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -58,6 +65,11 @@
 			isa = PBXGroup;
 			children = (
 				6D54169E1BDD47870070CD47 /* tokenizer.c */,
+				6D017D151BE14F6B001D37CA /* tokenizer.h */,
+				6D017D161BE1500F001D37CA /* indexer.c */,
+				6D017D171BE1500F001D37CA /* indexer.h */,
+				6D017D191BE15086001D37CA /* utils.c */,
+				6D017D1A1BE15086001D37CA /* utils.h */,
 			);
 			path = Indexer;
 			sourceTree = "<group>";
@@ -118,7 +130,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D017D1B1BE15086001D37CA /* utils.c in Sources */,
 				6D54169F1BDD47870070CD47 /* tokenizer.c in Sources */,
+				6D017D181BE1500F001D37CA /* indexer.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,6 +249,7 @@
 				6D54169C1BDD471B0070CD47 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
