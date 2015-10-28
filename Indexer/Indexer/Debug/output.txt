@@ -1,4 +1,6 @@
 
+FILE: Testdir/empty.txt
+
 FILE: Testdir/nextdir/dir2/Test copy.txt
 What
 a
