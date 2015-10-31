@@ -10,11 +10,12 @@
 #define indexer_h
 
 #include <stdio.h>
+#include "utils.h"
 
-void searchFile(char *directory, char *relativePath, FILE *output);
+void searchFile(char *directory, char *relativePath, Indexer *wordlist);
 
-void searchDirectory(char *directory, char *relativePath, FILE *output);
+void searchDirectory(char *directory, char *relativePath, Indexer *wordlist);
 
-void writeToOutputFile(FILE *output);
+void writeToOutputFile(FILE *output, Indexer *list);
 
 #endif /* indexer_h */

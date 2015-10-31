@@ -11,10 +11,34 @@
 
 #include <stdio.h>
 
+typedef struct dataEntry{
+    char *path;
+    int occur;
+    struct dataEntry *next;
+    struct dataEntry *prev;
+} Entry;
+
+typedef struct table{
+    //FILL OUT
+} Indexer;
+
+Entry *createEntry(char *path);
+
+void freeEntry(Entry *entry);
+
+void freeEntryList(Entry *entry);
+
+Indexer *createIndexer();
+
+void freeIndexer(Indexer *indexer);
+
+Entry *insertEntry(char *path, Entry *head);
+
 int isDir(const char *path);
 
 int isFile(const char *path);
 
 void getFullPath(char *path, char *relative, char *dest);
+
 
 #endif /* utils_h */

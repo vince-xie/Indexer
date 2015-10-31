@@ -14,16 +14,12 @@
 #include <dirent.h>
 #include <string.h>
 
-void searchFile(char *filename, char *relativePath, FILE *output){
+void searchFile(char *filename, char *relativePath, Indexer *wordlist){
     FILE *file = fopen(filename, "r");
     if (!file) {
         printf("Cannot open input file \"%s\"\n", filename);
         return;
     }
-    fputs("\n", output); //next 4 lines will be changed. For testing purposes
-    fputs("FILE: ", output);
-    fputs(relativePath, output);
-    fputs("\n", output);
     fseek(file, 0, SEEK_END);
     long filesize = ftell(file);
     rewind(file);
@@ -37,13 +33,27 @@ void searchFile(char *filename, char *relativePath, FILE *output){
         if(token == NULL){
             break;
         }
-        fputs(token, output); //next 2 lines will be changed. For testing purposes
-        fputc('\n', output);
+        /* Pseudo-code
+            if(word found in word list){
+                insertEntry(relativePath, head);
+            } else {
+                Entry *entry = createEntry();
+                put entry in word list
+            }
+        */
     }
     TKDestroy(tk);
 }
 
-void searchDirectory(char *directory, char *relativePath, FILE *output){
+void printList(Entry *head){
+    Entry *temp = head;
+    while(temp != NULL){
+        printf("%s: %d\n", temp->path, temp->occur);
+        temp = temp->next;
+    }
+}
+
+void searchDirectory(char *directory, char *relativePath, Indexer *wordlist){
     DIR *dir = opendir(directory);
     char temp[256];
     char path[256];
@@ -60,18 +70,35 @@ void searchDirectory(char *directory, char *relativePath, FILE *output){
             strcat(path, "/");
             strcat(path, ent->d_name);
             if(isDir(temp)){
-                searchDirectory(temp, path, output);
+                searchDirectory(temp, path, wordlist);
             } else {
-                searchFile(temp, path, output);
+                searchFile(temp, path, wordlist);
             }
         }
     }
     closedir(dir);
 }
 
-void writeToOutputFile(FILE *output){
-    
+void writeToOutputFile(FILE *output, Indexer *list){
+    //FILL THIS OUT (outputs JSON using data in the data structure into the file)
 }
+
+/* int main(int argc, char **argv){ //used for testing linked list implementation
+    Entry *head = createEntry("test");
+    head = insertEntry("test2", head);
+    head = insertEntry("test3", head);
+    head = insertEntry("test3", head);
+    head = insertEntry("test2", head);
+    head = insertEntry("test2", head);
+    head = insertEntry("apple", head);
+    head = insertEntry("apple", head);
+    head = insertEntry("apple", head);
+    head = insertEntry("apple", head);
+    head = insertEntry("aa", head);
+    head = insertEntry("test3", head);
+    printList(head);
+    freeEntryList(head);
+} */
 
 int main(int argc, char **argv) {
     if(argc != 3){
@@ -110,15 +137,19 @@ int main(int argc, char **argv) {
         printf("Could not open directory or file \"%s\"\n", argv[2]);
         return 1;
     }
+    
+    Indexer *list = createIndexer();
+    
     FILE *output = fopen(pathToOutput, "w");
     if(isDir(pathToFoD)){
-        searchDirectory(pathToFoD, argv[2], output);
+        searchDirectory(pathToFoD, argv[2], list);
     }
     if(isFile(pathToFoD)){
-        searchFile(pathToFoD, argv[1], output);
+        searchFile(pathToFoD, argv[1], list);
     }
     
-    writeToOutputFile(output);
+    writeToOutputFile(output, list);
+    freeIndexer(list);
     fclose(output);
     printf("Done.\n");
     return 0;
