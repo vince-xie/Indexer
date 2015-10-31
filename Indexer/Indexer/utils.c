@@ -77,7 +77,7 @@ Entry *insertEntry(char *path, Entry *head){
         }
         temp = temp->next;
     }
-    while(strcmp(path, temp->path) < 0 && occur == temp->occur){
+    while(strcmp(path, temp->path) > 0 && occur == temp->occur){
         if(temp->next == NULL){
             entry->prev = temp;
             temp->next = entry;

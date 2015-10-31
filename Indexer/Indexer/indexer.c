@@ -83,7 +83,7 @@ void writeToOutputFile(FILE *output, Indexer *list){
     //FILL THIS OUT (outputs JSON using data in the data structure into the file)
 }
 
-/* int main(int argc, char **argv){ //used for testing linked list implementation
+/* int main(int argc, char **argv){ //used for testing linked list implementation - ignore
     Entry *head = createEntry("test");
     head = insertEntry("test2", head);
     head = insertEntry("test3", head);
@@ -93,13 +93,13 @@ void writeToOutputFile(FILE *output, Indexer *list){
     head = insertEntry("apple", head);
     head = insertEntry("apple", head);
     head = insertEntry("apple", head);
-    head = insertEntry("apple", head);
     head = insertEntry("aa", head);
     head = insertEntry("test3", head);
+    head = insertEntry("bb", head);
     printList(head);
     freeEntryList(head);
 } */
-
+ 
 int main(int argc, char **argv) {
     if(argc != 3){
         printf("Wrong number of inputs\n");
