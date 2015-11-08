@@ -32,6 +32,8 @@ Indexer *createIndexer();
 
 void freeIndexer(Indexer *indexer);
 
+int compareEntries(Entry *entry, char *path, int occur);
+
 Entry *insertEntry(char *path, Entry *head);
 
 int isDir(const char *path);

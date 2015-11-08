@@ -85,7 +85,9 @@ void writeToOutputFile(FILE *output, Indexer *list){
 
 /* int main(int argc, char **argv){ //used for testing linked list implementation - ignore
     Entry *head = createEntry("test");
-    head = insertEntry("test2", head);
+    head = insertEntry("test", head);
+    head = insertEntry("test", head);
+    head = insertEntry("test", head);
     head = insertEntry("test3", head);
     head = insertEntry("test3", head);
     head = insertEntry("test2", head);
@@ -96,6 +98,13 @@ void writeToOutputFile(FILE *output, Indexer *list){
     head = insertEntry("aa", head);
     head = insertEntry("test3", head);
     head = insertEntry("bb", head);
+    head = insertEntry("bb", head);
+    head = insertEntry("a", head);
+    head = insertEntry("c", head);
+    head = insertEntry("tester", head);
+    head = insertEntry("tester", head);
+    head = insertEntry("tester", head);
+    head = insertEntry("tester", head);
     printList(head);
     freeEntryList(head);
 } */

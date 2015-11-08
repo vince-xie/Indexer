@@ -44,6 +44,14 @@ void freeIndexer(Indexer *indexer){ //COMPLETE THIS, should also free all entrys
     free(indexer);
 }
 
+int compareEntries(Entry *entry, char *path, int occur){
+    int diff = entry->occur - occur;
+    if(diff != 0){
+        return diff;
+    }
+    return strcmp(path, entry->path);
+}
+
 Entry *insertEntry(char *path, Entry *head){
     if(head == NULL || path == NULL){
         return 0;
@@ -72,18 +80,20 @@ Entry *insertEntry(char *path, Entry *head){
     entry->occur = occur;
     temp = head;
     while(temp != NULL){
-        if(temp->occur <= occur){
+        if(compareEntries(temp, path, occur) < 0){
             break;
         }
-        temp = temp->next;
-    }
-    while(strcmp(path, temp->path) > 0 && occur == temp->occur){
         if(temp->next == NULL){
             entry->prev = temp;
             temp->next = entry;
             return head;
         }
         temp = temp->next;
+    }
+    if(head == NULL){
+        head = createEntry(path);
+        head->occur = occur;
+        return head;
     }
     if(temp->prev){
         entry->prev = temp->prev;
