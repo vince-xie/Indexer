@@ -1,0 +1,22 @@
+Testplan:
+
+We called our index executable on a variety of testcases and had correct outputs for each of them.
+
+test1.txt is a small text file with 6 words.
+
+test2.txt is our indexer.c file in text format.
+
+test3.txt is a fairly large text file (10000 lines). This finished execution in about 6 seconds.
+
+blanktest.txt is a blank text file. The output is simply an empty list.
+
+emptyDir is an empty directory. The output is simply an empty list.
+
+test is a directory with a small hierarchy of directories. The total size of all files in this directory is about 625 KB. Execution finishes in about 6 seconds.
+
+bigDir is our largest directory with 10 files. Total file size is about 1.5 MB. Execution finishes in about 10 seconds.
+
+
+We also tried calling index on a wrong number of inputs or no inputs at all. "Wrong number of inputs" is outputted.
+
+Tried calling on inputs that don't exist, and it outputs "could not open file 'name'".
