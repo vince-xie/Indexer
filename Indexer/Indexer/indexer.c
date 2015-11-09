@@ -37,6 +37,7 @@ void searchFile(char *filename, Node * root){
         int numChars;
         if(token == NULL){
             TKDestroy(tk);
+            free(string);
             return;
         }
         token = strlwr(token);

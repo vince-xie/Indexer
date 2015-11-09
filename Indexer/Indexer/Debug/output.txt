@@ -2,6 +2,7 @@
 	{"a" : [
 		{"/Users/vincexie/Documents/Github/Indexer/Indexer/Indexer/test/newfolder/test3.txt" : 2801},
 		{"/Users/vincexie/Documents/Github/Indexer/Indexer/Indexer/test/empty/test2.txt" : 1},
+		{"/Users/vincexie/Documents/Github/Indexer/Indexer/Indexer/test/newfolder/adsad/ads.txt" : 1},
 		{"/Users/vincexie/Documents/Github/Indexer/Indexer/Indexer/test/test2.txt" : 1}
 	]},
 	{"aa" : [
@@ -12284,7 +12285,7 @@
 	]},
 	{"indexer" : [
 		{"/Users/vincexie/Documents/Github/Indexer/Indexer/Indexer/test/empty/test2.txt" : 4},
-		{"/Users/vincexie/Documents/Github/Indexer/Indexer/Indexer/test/test2.txt" : 3}
+		{"/Users/vincexie/Documents/Github/Indexer/Indexer/Indexer/test/test2.txt" : 4}
 	]},
 	{"indexes" : [
 		{"/Users/vincexie/Documents/Github/Indexer/Indexer/Indexer/test/newfolder/test3.txt" : 1}
@@ -23896,7 +23897,7 @@
 		{"/Users/vincexie/Documents/Github/Indexer/Indexer/Indexer/test/newfolder/test3.txt" : 1797}
 	]},
 	{"the" : [
-		{"/Users/vincexie/Documents/Github/Indexer/Indexer/Indexer/test/newfolder/test3.txt" : 6491}
+		{"/Users/vincexie/Documents/Github/Indexer/Indexer/Indexer/test/newfolder/test3.txt" : 6492}
 	]},
 	{"theft" : [
 		{"/Users/vincexie/Documents/Github/Indexer/Indexer/Indexer/test/newfolder/test3.txt" : 1}

@@ -30,14 +30,16 @@ void searchFile(char *filename, Node * root){
     fclose(file);
     TokenizerT *tk = TKCreate(string);
     
+    char *token;
     //get first token for root of tree
-    char *token = TKGetNextToken(tk);
-    int numChars;
-    if(token == NULL){
-        TKDestroy(tk);
-        return;
-    }
     if(root->word == NULL){
+        char *token = TKGetNextToken(tk);
+        int numChars;
+        if(token == NULL){
+            TKDestroy(tk);
+            free(string);
+            return;
+        }
         token = strlwr(token);
         
         Entry *entry = createEntry(filename);
