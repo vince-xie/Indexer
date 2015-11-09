@@ -27,7 +27,7 @@ void freeEntry(Entry *entry){
 }
 
 void freeEntryList(Entry *entry){
-    Entry *temp = entry->next;
+    Entry *temp = entry;
     while(temp != NULL){
         temp = temp->next;
         free(entry);
